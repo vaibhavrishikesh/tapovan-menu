@@ -102,6 +102,28 @@ Must include:
 - Short item description if available
 - Last updated time
 
+### QR scanner identity rule
+
+The QR scan experience must also show the cafe/restaurant identity below the scanner or QR block. Before the customer even lands on the menu, the screen or poster should confirm which outlet this QR belongs to.
+
+Required scanner/footer text:
+
+- Cafe/restaurant name below the scan area
+- Area/branch below the name
+- “Powered by Tapovan Menu” as a small trust label
+
+Example:
+
+```text
+Scan live menu
+[ QR / scanner area ]
+Lily’s Cafe
+Tapovan, Rishikesh
+Powered by Tapovan Menu
+```
+
+This is useful when QR stickers or table cards are placed close to each other, or when a hotel/cafe has multiple counters.
+
 ### Customer header rule
 
 The live menu must always show the restaurant/cafe name at the top after scan. QR scanning confirms the outlet behind the scenes, but the customer still needs visible trust: “I scanned Lily’s Cafe, and this is Lily’s Cafe live menu.” The header should include:

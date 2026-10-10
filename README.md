@@ -34,7 +34,8 @@ Example URLs:
 
 Each cafe gets:
 
-- Unique QR code
+- Unique QR code with cafe/restaurant name printed below it
+- Scanner/QR preview area that also shows the cafe/restaurant name below the scan target
 - Public live menu page with cafe/restaurant name at the top
 - Location or area label so guests know which outlet they scanned
 - Admin panel

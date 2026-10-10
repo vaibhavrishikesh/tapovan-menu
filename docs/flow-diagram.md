@@ -61,7 +61,7 @@ flowchart LR
 flowchart TD
     A[Owner creates Tapovan Menu outlet] --> B[Menu is digitized from printed menu]
     B --> C[Ingredients are mapped to dishes]
-    C --> D[QR poster is printed for tables and counter]
+    C --> D[QR poster/scanner shows cafe name below QR]
     D --> E[Customer scans QR]
     E --> F[Live menu shows cafe name, area and live status]
     F --> F2[Available dishes appear first]

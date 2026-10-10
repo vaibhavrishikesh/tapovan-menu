@@ -14,7 +14,7 @@ Tapovan Menu is a shared live-menu platform for cafes, hotels, hostels and small
    Common dependencies like paneer, batter, milk, tomato, bread or coffee beans are linked to every affected dish.
 
 4. **Generate the QR menu**  
-   Tapovan Menu creates a QR poster/table standee for that outlet. The printed menu can stay fixed; the QR page stays live.
+   Tapovan Menu creates a QR poster/table standee for that outlet. The QR block and scanner preview both show the cafe/restaurant name underneath, so the guest knows which outlet they are scanning. The printed menu can stay fixed; the QR page stays live.
 
 5. **Update availability during the day**  
    Staff marks ingredients or dishes as available, low stock, sold out, paused or back soon. One ingredient update can automatically affect many dishes.
@@ -35,6 +35,20 @@ Tapovan Menu is a shared live-menu platform for cafes, hotels, hostels and small
 - **QR posters**: printable QR sheets, table stickers and counter cards.
 - **Analytics**: scan trends, sold-out history, popular dishes and missed-demand insights.
 - **Settings**: staff access, language, branding and contact/order links.
+
+## QR scanner and poster identity
+
+The scan surface should confirm outlet identity before the menu opens. This applies to printed table cards, counter posters and any in-app scanner preview.
+
+Required layout:
+
+1. “Scan live menu” label.
+2. QR code or scanner window.
+3. Cafe/restaurant name directly below the QR/scanner area.
+4. Area or branch below the name.
+5. Small “Powered by Tapovan Menu” trust label.
+
+Example: `Lily’s Cafe · Tapovan, Rishikesh · Powered by Tapovan Menu`.
 
 ## Customer live menu header
 
