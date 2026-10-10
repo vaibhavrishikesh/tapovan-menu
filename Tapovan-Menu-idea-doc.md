@@ -92,13 +92,26 @@ Mobile-first menu page opened by QR code.
 
 Must include:
 
-- Cafe name, location, and basic branding
+- Cafe/restaurant name as the first visible header
+- Location or branch label, such as Tapovan, Rishikesh
+- Basic branding/logo
 - Category tabs
 - Available items list
 - Sold-out items list
 - Price
 - Short item description if available
 - Last updated time
+
+### Customer header rule
+
+The live menu must always show the restaurant/cafe name at the top after scan. QR scanning confirms the outlet behind the scenes, but the customer still needs visible trust: “I scanned Lily’s Cafe, and this is Lily’s Cafe live menu.” The header should include:
+
+- Cafe/restaurant name
+- Area or branch label
+- Live status: Open, Closing soon, Closed, or Updated just now
+- Optional logo/photo
+
+This avoids confusion when many Tapovan cafes use the same Tapovan Menu platform.
 
 ### 2. Admin panel
 

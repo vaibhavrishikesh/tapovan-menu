@@ -27,7 +27,7 @@ Tapovan Menu should feel like a premium local utility for mountain cafes, not a 
 3. **Menu builder**: add categories, dishes, prices and photos.
 4. **Ingredient mapping**: link ingredients to dishes.
 5. **Daily availability control**: quick toggles for ingredients and dishes.
-6. **Customer live menu**: available dishes first, unavailable dishes clearly labeled.
+6. **Customer live menu**: outlet name header, area label, live status, available dishes first, unavailable dishes clearly labeled.
 7. **QR poster generator**: printable table card/counter card.
 8. **Analytics dashboard**: scans, sold-out items and missed demand.
 
@@ -37,6 +37,7 @@ Tapovan Menu should feel like a premium local utility for mountain cafes, not a 
 - It is one shared platform for many cafes, hotels and hostels.
 - Each outlet gets its own QR and live menu page.
 - Admin users update ingredients first; dish status can update automatically.
+- The customer menu should show the cafe/restaurant name, area and live status before the item list.
 - The customer menu should be simple enough for tourists to understand in seconds.
 - The admin panel should feel like a daily counter tool, not a heavy restaurant ERP.
 

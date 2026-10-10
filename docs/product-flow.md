@@ -20,7 +20,7 @@ Tapovan Menu is a shared live-menu platform for cafes, hotels, hostels and small
    Staff marks ingredients or dishes as available, low stock, sold out, paused or back soon. One ingredient update can automatically affect many dishes.
 
 6. **Customer scans and orders confidently**  
-   Guests scan the QR and see available dishes first. Sold-out dishes are faded with a reason, so staff get fewer repeated questions.
+   Guests scan the QR and first see the cafe/restaurant name, area, live status, and then available dishes. Sold-out dishes are faded with a reason, so staff get fewer repeated questions.
 
 7. **Owner reviews demand**  
    The dashboard shows scans, most-viewed dishes, unavailable items, frequent missing ingredients and lost-demand signals.
@@ -35,6 +35,17 @@ Tapovan Menu is a shared live-menu platform for cafes, hotels, hostels and small
 - **QR posters**: printable QR sheets, table stickers and counter cards.
 - **Analytics**: scan trends, sold-out history, popular dishes and missed-demand insights.
 - **Settings**: staff access, language, branding and contact/order links.
+
+## Customer live menu header
+
+The customer page should always begin with outlet identity before showing food items:
+
+- **Cafe/restaurant name:** for example, Lily’s Cafe.
+- **Area/branch:** for example, Tapovan, Rishikesh.
+- **Live status:** Open now, closed, updated 2 minutes ago, or kitchen paused.
+- **Trust cue:** “Live menu by Tapovan Menu.”
+
+This matters because Tapovan Menu is one shared platform. The QR route identifies the outlet technically, but the UI must confirm it visually for the guest.
 
 ## Customer live menu states
 

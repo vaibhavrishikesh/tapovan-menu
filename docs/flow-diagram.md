@@ -63,7 +63,8 @@ flowchart TD
     B --> C[Ingredients are mapped to dishes]
     C --> D[QR poster is printed for tables and counter]
     D --> E[Customer scans QR]
-    E --> F[Live menu shows available dishes first]
+    E --> F[Live menu shows cafe name, area and live status]
+    F --> F2[Available dishes appear first]
     C --> G[Staff opens daily availability panel]
     G --> H{What changed today?}
     H -->|Ingredient missing| I[Mark ingredient unavailable]
@@ -72,8 +73,8 @@ flowchart TD
     I --> L[Affected dishes update automatically]
     J --> L
     K --> L
-    L --> F
-    F --> M[Owner sees scans, sold-out items and missed demand]
+    L --> F2
+    F2 --> M[Owner sees scans, sold-out items and missed demand]
 ```
 
 ## Admin control logic
