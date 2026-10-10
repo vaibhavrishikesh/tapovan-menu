@@ -2,7 +2,7 @@
 
 ## One-line idea
 
-Tapovan Menu is a single live-menu platform for cafes, restaurants, hostels, and hotels where customers scan a QR code and see what is actually available right now, while staff update ingredient or dish availability from a simple admin panel.
+Tapovan Menu is a mobile-first webapp and single live-menu platform for cafes, restaurants, hostels, and hotels where customers scan a QR code and see what is actually available right now, while staff update ingredient or dish availability from a simple admin panel.
 
 ## Problem
 
@@ -69,6 +69,16 @@ If an ingredient is unavailable, all dishes that depend on it automatically beco
 4. Paneer Sandwich, Paneer Pasta, and Paneer Paratha automatically move to Sold Out Today.
 5. Staff restores Paneer when stock arrives.
 6. Customer menu updates instantly.
+
+## Mobile-first webapp priority
+
+Tapovan Menu should start as a webapp/PWA, not a native mobile app. The customer QR menu and staff admin can both run in the browser. This keeps the MVP faster and avoids asking cafe staff to install anything.
+
+The first admin priority is the **ingredient disable/enable screen**. Staff should be able to open the admin link on a phone, toggle an ingredient like Paneer or Batter, and immediately see which dishes become unavailable.
+
+Key rule: ingredient updates should take under 5 seconds on mobile. Big toggles, clear statuses, and affected dishes should be visible on the same screen.
+
+See [docs/mobile-first-webapp.md](docs/mobile-first-webapp.md) for the detailed webapp flow.
 
 ## Professional product flow
 

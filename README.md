@@ -1,6 +1,6 @@
 # Tapovan Menu
 
-Tapovan Menu is a live-menu platform for cafes, hotels, hostels, and restaurants. Customers scan a QR code beside the printed menu and see what is actually available right now. Staff update ingredients or dishes from a simple admin panel, and affected dishes become unavailable automatically.
+Tapovan Menu is a mobile-first live-menu webapp for cafes, hotels, hostels, and restaurants. Customers scan a QR code beside the printed menu and see what is actually available right now. Staff update ingredients or dishes from a simple admin panel, and affected dishes become unavailable automatically.
 
 ![Tapovan Menu product flow](assets/tapovan-menu-product-flow.svg)
 
@@ -49,6 +49,7 @@ Each cafe gets:
 - [Professional product flow](docs/product-flow.md)
 - [Design brief](docs/design-brief.md)
 - [Supabase architecture](docs/supabase-architecture.md)
+- [Mobile-first webapp plan](docs/mobile-first-webapp.md)
 - [Flow diagram](docs/flow-diagram.md)
 - [MVP build plan](docs/mvp-build-plan.md)
 

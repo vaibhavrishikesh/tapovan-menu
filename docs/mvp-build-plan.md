@@ -41,3 +41,17 @@
 - Dishes using that ingredient become unavailable automatically.
 - A staff member can restore the ingredient and dishes become available again.
 - The system supports more than one cafe from the same backend.
+
+
+## Mobile-first admin priority
+
+Build the ingredient disable/enable screen before advanced owner analytics. This is the core cafe-staff workflow Vaibhav asked for.
+
+Acceptance criteria:
+
+- Staff can open admin on mobile browser.
+- Cafe name and area are visible at the top.
+- Ingredient list has large one-tap toggles.
+- Staff can set Available, Low, Missing, Not ready, Sold out, Back soon.
+- Affected dishes update immediately after ingredient status changes.
+- Customer live menu reflects the latest status.
