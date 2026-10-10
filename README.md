@@ -48,6 +48,7 @@ Each cafe gets:
 - [Idea document](Tapovan-Menu-idea-doc.md)
 - [Professional product flow](docs/product-flow.md)
 - [Design brief](docs/design-brief.md)
+- [Supabase architecture](docs/supabase-architecture.md)
 - [Flow diagram](docs/flow-diagram.md)
 - [MVP build plan](docs/mvp-build-plan.md)
 
