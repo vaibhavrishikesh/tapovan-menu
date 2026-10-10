@@ -1,0 +1,2 @@
+-- Demo seed will be expanded after real Lily's Cafe menu is provided.
+-- Current app uses data/demo.ts as local fallback until Supabase env keys are connected.

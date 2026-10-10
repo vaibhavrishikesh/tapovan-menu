@@ -43,6 +43,45 @@ Each cafe gets:
 - Ingredient availability controls
 - Optional custom branding
 
+
+## Current implementation demo
+
+The repository now includes a working Next.js MVP shell. It uses local Lily's Cafe demo data first so the product can be shown before Supabase writes are connected.
+
+Run locally:
+
+```bash
+npm install
+npm run dev
+```
+
+Demo routes:
+
+- Customer live menu: `http://localhost:3000/lilys-cafe`
+- Staff PIN login: `http://localhost:3000/admin/lilys-cafe`
+- Ingredient update screen: `http://localhost:3000/admin/lilys-cafe/ingredients`
+- Demo PIN: `1234`
+
+The admin ingredient screen is interactive for demo: tap ingredients to cycle through Available, Low, Missing, and Not ready. Affected dishes update immediately on screen. Production persistence will use Supabase.
+
+## Supabase setup
+
+Use the existing Supabase project from the dashboard screenshot:
+
+- Project URL: `https://jqtcsnlfeqtazacivnen.supabase.co`
+- Region: South Asia / Mumbai
+
+Before Vercel deployment, add these environment variables in Vercel and locally in `.env.local`:
+
+```bash
+NEXT_PUBLIC_SUPABASE_URL=https://jqtcsnlfeqtazacivnen.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=replace-with-supabase-anon-public-key
+SUPABASE_SERVICE_ROLE_KEY=replace-with-service-role-key-for-server-actions-only
+ADMIN_SESSION_SECRET=replace-with-long-random-secret
+```
+
+Run `supabase/schema.sql` in the Supabase SQL editor, then add demo rows from `supabase/seed-demo.sql` when the database is ready.
+
 ## Documents
 
 - [Idea document](Tapovan-Menu-idea-doc.md)
