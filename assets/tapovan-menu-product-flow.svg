@@ -1,0 +1,109 @@
+<svg width="1600" height="950" viewBox="0 0 1600 950" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="950" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8F1E4"/>
+      <stop offset="0.48" stop-color="#EEF6ED"/>
+      <stop offset="1" stop-color="#E1F1EA"/>
+    </linearGradient>
+    <linearGradient id="hero" x1="160" y1="155" x2="1440" y2="740" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#12352C"/>
+      <stop offset="1" stop-color="#1F6D4B"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#14382F" flood-opacity="0.18"/>
+    </filter>
+    <style>
+      .title{font:800 72px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;letter-spacing:-2px;fill:#102E26}
+      .subtitle{font:500 26px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;fill:#51645E}
+      .eyebrow{font:700 18px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;letter-spacing:3px;text-transform:uppercase;fill:#E5C978}
+      .cardTitle{font:800 30px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;fill:#102E26}
+      .cardText{font:500 21px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;fill:#587069}
+      .whiteTitle{font:800 32px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;fill:#FFFFFF}
+      .whiteText{font:500 21px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;fill:#DBEFE7}
+      .chip{font:800 16px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;letter-spacing:1.2px;text-transform:uppercase}
+      .small{font:650 17px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;fill:#45615A}
+      .num{font:900 30px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;fill:#FFFFFF}
+    </style>
+  </defs>
+
+  <rect width="1600" height="950" fill="url(#bg)"/>
+  <circle cx="1325" cy="145" r="170" fill="#F2D889" opacity="0.22"/>
+  <circle cx="210" cy="785" r="210" fill="#6CBF8A" opacity="0.14"/>
+
+  <text x="120" y="110" class="eyebrow">Printed menu + live availability</text>
+  <text x="120" y="190" class="title">Tapovan Menu</text>
+  <text x="120" y="235" class="subtitle">One shared platform for cafes, hotels and hostels in Tapovan.</text>
+
+  <rect x="120" y="285" width="1360" height="430" rx="42" fill="url(#hero)" filter="url(#shadow)"/>
+  <text x="170" y="355" class="whiteTitle">Owner flow</text>
+  <text x="170" y="392" class="whiteText">Set up once, then keep availability live from the counter.</text>
+
+  <g transform="translate(170 445)">
+    <rect width="220" height="190" rx="28" fill="#FFFFFF"/>
+    <circle cx="42" cy="43" r="25" fill="#1F6D4B"/><text x="33" y="54" class="num">1</text>
+    <text x="28" y="94" class="cardTitle">Create menu</text>
+    <text x="28" y="130" class="cardText">Add dishes, prices,</text>
+    <text x="28" y="158" class="cardText">photos and groups.</text>
+  </g>
+  <path d="M405 540 C430 540 445 540 470 540" stroke="#E5C978" stroke-width="8" stroke-linecap="round"/>
+  <path d="M462 525 L482 540 L462 555" stroke="#E5C978" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g transform="translate(495 445)">
+    <rect width="220" height="190" rx="28" fill="#FFFFFF"/>
+    <circle cx="42" cy="43" r="25" fill="#1F6D4B"/><text x="33" y="54" class="num">2</text>
+    <text x="28" y="94" class="cardTitle">Map ingredients</text>
+    <text x="28" y="130" class="cardText">Link paneer, batter,</text>
+    <text x="28" y="158" class="cardText">milk and sauces.</text>
+  </g>
+  <path d="M730 540 C755 540 770 540 795 540" stroke="#E5C978" stroke-width="8" stroke-linecap="round"/>
+  <path d="M787 525 L807 540 L787 555" stroke="#E5C978" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g transform="translate(820 445)">
+    <rect width="220" height="190" rx="28" fill="#FFFFFF"/>
+    <circle cx="42" cy="43" r="25" fill="#1F6D4B"/><text x="33" y="54" class="num">3</text>
+    <text x="28" y="94" class="cardTitle">Update stock</text>
+    <text x="28" y="130" class="cardText">Staff marks items</text>
+    <text x="28" y="158" class="cardText">low, sold out or back.</text>
+  </g>
+  <path d="M1055 540 C1080 540 1095 540 1120 540" stroke="#E5C978" stroke-width="8" stroke-linecap="round"/>
+  <path d="M1112 525 L1132 540 L1112 555" stroke="#E5C978" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g transform="translate(1145 445)">
+    <rect width="260" height="190" rx="28" fill="#FFFFFF"/>
+    <circle cx="42" cy="43" r="25" fill="#1F6D4B"/><text x="33" y="54" class="num">4</text>
+    <text x="28" y="94" class="cardTitle">Customer scans QR</text>
+    <text x="28" y="130" class="cardText">Live menu opens with</text>
+    <text x="28" y="158" class="cardText">available dishes first.</text>
+  </g>
+
+  <rect x="170" y="660" width="1235" height="1" fill="#FFFFFF" opacity="0.18"/>
+  <text x="170" y="685" class="whiteText">If an ingredient is unavailable, Tapovan Menu automatically hides or labels every affected dish.</text>
+
+  <g transform="translate(120 760)">
+    <rect width="310" height="92" rx="24" fill="#FFFFFF" filter="url(#shadow)"/>
+    <rect x="24" y="27" width="42" height="42" rx="14" fill="#E9F7EF"/><text x="36" y="56" font-size="26">📱</text>
+    <text x="84" y="43" class="small">Customer live menu</text>
+    <text x="84" y="69" font="500 15px Inter, sans-serif" fill="#6C7D78">Available, low stock, sold out</text>
+  </g>
+  <g transform="translate(460 760)">
+    <rect width="310" height="92" rx="24" fill="#FFFFFF" filter="url(#shadow)"/>
+    <rect x="24" y="27" width="42" height="42" rx="14" fill="#FFF3D2"/><text x="35" y="56" font-size="25">🧑‍🍳</text>
+    <text x="84" y="43" class="small">Staff admin panel</text>
+    <text x="84" y="69" font="500 15px Inter, sans-serif" fill="#6C7D78">Fast toggles for daily changes</text>
+  </g>
+  <g transform="translate(800 760)">
+    <rect width="310" height="92" rx="24" fill="#FFFFFF" filter="url(#shadow)"/>
+    <rect x="24" y="27" width="42" height="42" rx="14" fill="#FFE9E4"/><text x="35" y="56" font-size="25">📊</text>
+    <text x="84" y="43" class="small">Owner dashboard</text>
+    <text x="84" y="69" font="500 15px Inter, sans-serif" fill="#6C7D78">Menu health and demand signals</text>
+  </g>
+  <g transform="translate(1140 760)">
+    <rect width="340" height="92" rx="24" fill="#FFFFFF" filter="url(#shadow)"/>
+    <rect x="24" y="27" width="42" height="42" rx="14" fill="#EAF1FF"/><text x="35" y="56" font-size="25">🏔️</text>
+    <text x="84" y="43" class="small">One platform. Many cafes.</text>
+    <text x="84" y="69" font="500 15px Inter, sans-serif" fill="#6C7D78">Each outlet gets its own QR page</text>
+  </g>
+
+  <rect x="1180" y="105" width="300" height="74" rx="37" fill="#102E26"/>
+  <text x="1232" y="151" class="chip" fill="#FFFFFF">Tapovan pilot ready</text>
+</svg>

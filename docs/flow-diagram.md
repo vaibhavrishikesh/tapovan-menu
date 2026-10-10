@@ -53,3 +53,41 @@ flowchart LR
     D --> F
     E --> F
 ```
+
+
+## Professional operating flow
+
+```mermaid
+flowchart TD
+    A[Owner creates Tapovan Menu outlet] --> B[Menu is digitized from printed menu]
+    B --> C[Ingredients are mapped to dishes]
+    C --> D[QR poster is printed for tables and counter]
+    D --> E[Customer scans QR]
+    E --> F[Live menu shows available dishes first]
+    C --> G[Staff opens daily availability panel]
+    G --> H{What changed today?}
+    H -->|Ingredient missing| I[Mark ingredient unavailable]
+    H -->|Dish sold out| J[Mark dish unavailable]
+    H -->|Back in stock| K[Mark available]
+    I --> L[Affected dishes update automatically]
+    J --> L
+    K --> L
+    L --> F
+    F --> M[Owner sees scans, sold-out items and missed demand]
+```
+
+## Admin control logic
+
+```mermaid
+flowchart LR
+    Ingredient[Ingredient status] --> Rule[Availability rules]
+    Dish[Dishes linked to ingredient] --> Rule
+    Rule --> Available[Available]
+    Rule --> Low[Low stock]
+    Rule --> SoldOut[Sold out today]
+    Rule --> BackSoon[Back soon]
+    Available --> Customer[Customer live menu]
+    Low --> Customer
+    SoldOut --> Customer
+    BackSoon --> Customer
+```

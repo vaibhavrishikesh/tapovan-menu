@@ -1,8 +1,10 @@
 # Tapovan Menu
 
-Tapovan Menu is a live-menu platform for cafes, restaurants, hostels, and hotels. Customers scan a QR code beside the printed menu and see what is actually available right now. Staff update ingredients or dishes from a simple admin panel, and affected dishes become unavailable automatically.
+Tapovan Menu is a live-menu platform for cafes, hotels, hostels, and restaurants. Customers scan a QR code beside the printed menu and see what is actually available right now. Staff update ingredients or dishes from a simple admin panel, and affected dishes become unavailable automatically.
 
-![Tapovan Menu pitch mockup](assets/tapovan-menu-pitch-mockup.png)
+![Tapovan Menu product flow](assets/tapovan-menu-product-flow.svg)
+
+A polished cafe-scene concept mockup is also saved at [assets/tapovan-menu-professional-flow.png](assets/tapovan-menu-professional-flow.png), and the earlier pitch mockup is saved at [assets/tapovan-menu-pitch-mockup.png](assets/tapovan-menu-pitch-mockup.png).
 
 ## Why this exists
 
@@ -12,12 +14,13 @@ Tapovan Menu keeps the printed menu, but adds a live QR layer.
 
 ## Core flow
 
-1. Cafe keeps its normal printed menu.
-2. Cafe places a QR sticker or table stand beside it.
-3. Customer scans the QR code.
-4. Customer sees the live menu for that cafe.
-5. Staff marks ingredients or dishes unavailable from the admin panel.
-6. The public menu updates immediately.
+1. Owner creates one Tapovan Menu outlet profile.
+2. Staff digitizes the printed menu with categories, dishes, prices and photos.
+3. Staff maps ingredients like paneer, batter, milk or bread to affected dishes.
+4. Cafe places a QR sticker or table stand beside the printed menu.
+5. Customer scans the QR code and sees available dishes first.
+6. Staff updates ingredients or dishes from the admin panel during the day.
+7. The public live menu updates immediately, including every dish affected by a missing ingredient.
 
 ## Product model
 
@@ -41,9 +44,11 @@ Each cafe gets:
 ## Documents
 
 - [Idea document](Tapovan-Menu-idea-doc.md)
+- [Professional product flow](docs/product-flow.md)
+- [Design brief](docs/design-brief.md)
 - [Flow diagram](docs/flow-diagram.md)
 - [MVP build plan](docs/mvp-build-plan.md)
 
 ## Demo pitch line
 
-> Your printed menu stays the same. Customers scan QR to see what is actually available right now.
+> Keep your printed menu. Tapovan Menu makes availability live.

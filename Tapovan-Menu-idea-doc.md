@@ -70,6 +70,20 @@ If an ingredient is unavailable, all dishes that depend on it automatically beco
 5. Staff restores Paneer when stock arrives.
 6. Customer menu updates instantly.
 
+## Professional product flow
+
+Tapovan Menu should be sold as one shared platform for the whole Tapovan market, not as a separate app per cafe. Each business gets its own outlet profile, QR code and live menu page. Staff only need to update ingredients or dish availability during the day, while customers keep using the same QR next to the printed menu.
+
+The professional demo should show three connected surfaces:
+
+1. **Printed-menu QR** — the cafe keeps its existing menu and adds a Tapovan Menu QR sticker or table card.
+2. **Customer live menu** — guests scan and see available dishes first, with sold-out dishes faded and explained.
+3. **Admin control panel** — staff mark ingredients or dishes as unavailable, and affected menu items update automatically.
+
+This makes the idea easy to explain to Tapovan owners: “aapka printed menu same rahega, bas availability live ho jayegi.”
+
+See the detailed product flow in [docs/product-flow.md](docs/product-flow.md) and the design brief in [docs/design-brief.md](docs/design-brief.md).
+
 ## Product modules
 
 ### 1. Public live menu
