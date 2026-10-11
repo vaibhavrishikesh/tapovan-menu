@@ -80,7 +80,12 @@ SUPABASE_SERVICE_ROLE_KEY=replace-with-service-role-key-for-server-actions-only
 ADMIN_SESSION_SECRET=replace-with-long-random-secret
 ```
 
-Run `supabase/schema.sql` in the Supabase SQL editor, then add demo rows from `supabase/seed-demo.sql` when the database is ready.
+Run these in the Supabase SQL editor, in this order:
+
+1. `supabase/schema.sql`
+2. `supabase/seed-demo.sql`
+
+The app keeps a local demo fallback when env keys are missing. After adding `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, and `SUPABASE_SERVICE_ROLE_KEY`, the public menu reads Lily's Cafe from Supabase and the staff ingredient screen persists status changes. Keep the service role key only in server/Vercel environment variables; never paste it into client code.
 
 ## Documents
 

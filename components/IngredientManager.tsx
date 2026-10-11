@@ -1,13 +1,22 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useTransition } from "react";
 import type { Ingredient, Outlet } from "@/data/demo";
 import { getDishAvailability, statusLabel } from "@/lib/availability";
 
 const cycleStatus: Ingredient["status"][] = ["available", "low", "missing", "not_ready"];
 
+function statusReason(name: string, status: Ingredient["status"]) {
+  if (status === "available") return undefined;
+  if (status === "low") return "Low stock";
+  if (status === "missing") return `${name} missing`;
+  return `${name} not ready`;
+}
+
 export function IngredientManager({ outlet }: { outlet: Outlet }) {
   const [ingredients, setIngredients] = useState(outlet.ingredients);
+  const [message, setMessage] = useState("Tap an ingredient to update today's live menu.");
+  const [isPending, startTransition] = useTransition();
   const affected = useMemo(
     () => outlet.dishes
       .map((dish) => ({ dish, availability: getDishAvailability(dish, ingredients) }))
@@ -17,15 +26,35 @@ export function IngredientManager({ outlet }: { outlet: Outlet }) {
   const ready = outlet.dishes.length - affected.length;
 
   function rotateIngredient(id: string) {
-    setIngredients((current) => current.map((ingredient) => {
-      if (ingredient.id !== id) return ingredient;
-      const next = cycleStatus[(cycleStatus.indexOf(ingredient.status) + 1) % cycleStatus.length];
-      return {
-        ...ingredient,
-        status: next,
-        reason: next === "available" ? undefined : next === "low" ? "Low stock" : next === "missing" ? `${ingredient.name} missing` : `${ingredient.name} not ready`
-      };
-    }));
+    const currentIngredient = ingredients.find((ingredient) => ingredient.id === id);
+    if (!currentIngredient) return;
+    const next = cycleStatus[(cycleStatus.indexOf(currentIngredient.status) + 1) % cycleStatus.length];
+    const nextIngredient = { ...currentIngredient, status: next, reason: statusReason(currentIngredient.name, next) };
+    const previousIngredients = ingredients;
+
+    setIngredients((current) => current.map((ingredient) => ingredient.id === id ? nextIngredient : ingredient));
+    setMessage(`${currentIngredient.name} set to ${statusLabel(next)}. Saving...`);
+
+    startTransition(async () => {
+      try {
+        const response = await fetch("/api/admin/ingredients", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            slug: outlet.slug,
+            ingredientId: id,
+            status: next,
+            reason: nextIngredient.reason
+          })
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(result.error ?? "Could not save ingredient");
+        setMessage(result.persisted ? `${currentIngredient.name} saved to live menu.` : `${currentIngredient.name} changed for this demo. Add Supabase write key to persist.`);
+      } catch (error) {
+        setIngredients(previousIngredients);
+        setMessage(error instanceof Error ? error.message : "Could not save ingredient. Change reverted.");
+      }
+    });
   }
 
   return (
@@ -33,7 +62,8 @@ export function IngredientManager({ outlet }: { outlet: Outlet }) {
       <div className="card">
         <span className="eyebrow">Fast mobile update</span>
         <h2 style={{ margin: "8px 0 0" }}>Ingredients</h2>
-        <p className="muted">Tap any row to cycle: Available → Low → Missing → Not ready. Supabase will persist this in production.</p>
+        <p className="muted">Tap any row to cycle: Available → Low → Missing → Not ready. Customer menu updates from the saved ingredient status.</p>
+        <div className="notice" aria-live="polite">{message}{isPending ? "" : ""}</div>
         <div className="metric-row">
           <div><strong>{ready}</strong><span>ready dishes</span></div>
           <div><strong>{affected.length}</strong><span>hidden today</span></div>
@@ -42,7 +72,7 @@ export function IngredientManager({ outlet }: { outlet: Outlet }) {
           {ingredients.map((ingredient) => {
             const isOn = ingredient.status === "available" || ingredient.status === "low";
             return (
-              <button className="ingredient-row ingredient-button" key={ingredient.id} type="button" onClick={() => rotateIngredient(ingredient.id)}>
+              <button className="ingredient-row ingredient-button" key={ingredient.id} type="button" onClick={() => rotateIngredient(ingredient.id)} disabled={isPending}>
                 <div className="food-img">{isOn ? "✅" : "⚠️"}</div>
                 <div>
                   <strong>{ingredient.name}</strong>
