@@ -18,24 +18,23 @@ export default async function HomePage() {
   return (
     <main className="page">
       <div className="shell landing-shell">
-        <section className="hero landing-hero">
+        <section className="hero landing-hero directory-hero">
           <div className="landing-copy">
-            <span className="eyebrow">Tapovan Menu · live availability</span>
-            <h1 className="h1">Choose your cafe or scan its table QR.</h1>
-            <p className="lead">Every cafe gets its own Tapovan Menu QR. Guests scan the code at the table or choose a cafe below to open that cafe’s live menu.</p>
+            <span className="eyebrow">Tapovan Menu directory</span>
+            <h1 className="h1">Scan a cafe QR or choose a cafe.</h1>
+            <p className="lead">Each cafe has its own live menu. Scan the Tapovan Menu QR at the table, or pick the cafe from this list.</p>
             <div className="landing-actions">
-              <Link className="cta" href={`/${featured.slug}`}>Open {featured.name}</Link>
-              <a className="cta secondary" href="/print/lilys-cafe-qr-poster.svg" target="_blank" rel="noreferrer">Download Lily's QR</a>
+              <Link className="cta" href={`/${featured.slug}`}>View {featured.name}</Link>
+              <a className="cta secondary" href="/print/lilys-cafe-qr-poster.svg" target="_blank" rel="noreferrer">Print QR for Lily&apos;s Cafe</a>
             </div>
           </div>
-          <MenuScanner />
         </section>
 
         <section className="landing-section">
           <div className="section-heading">
-            <span className="eyebrow">Cafe directory</span>
-            <h2>Live menus by cafe</h2>
-            <p className="muted">Lily&apos;s Cafe is live first. When 10 cafes join, they appear here as separate cards with their own QR, cafe code, live menu, and staff login.</p>
+            <span className="eyebrow">Cafe list</span>
+            <h2>Choose a live menu</h2>
+            <p className="muted">As more cafes join Tapovan Menu, they appear here as cards with their area, availability count, and direct menu link.</p>
           </div>
           <div className="outlet-grid">
             {cards.map(({ outlet, ready, unavailable }) => (
@@ -55,6 +54,7 @@ export default async function HomePage() {
                 </div>
                 <div className="outlet-actions">
                   <Link className="cta" href={`/${outlet.slug}`}>View live menu</Link>
+                  {outlet.slug === "lilys-cafe" ? <a className="cta light" href="/print/lilys-cafe-qr-poster.svg" target="_blank" rel="noreferrer">Download QR</a> : null}
                   <Link className="cta secondary" href={`/admin/${outlet.slug}`}>Staff login</Link>
                 </div>
               </article>
@@ -62,11 +62,20 @@ export default async function HomePage() {
           </div>
         </section>
 
+        <section className="scanner-section">
+          <div className="section-heading compact-heading">
+            <span className="eyebrow">Optional scanner</span>
+            <h2>Already at a cafe?</h2>
+            <p className="muted">Use this only when a customer wants to scan a Tapovan Menu QR from the browser. The cafe list above stays the main path.</p>
+          </div>
+          <MenuScanner />
+        </section>
+
         <section className="print-section">
           <div>
-            <span className="eyebrow">Cafe test print</span>
-            <h2>Download the Lily&apos;s Cafe QR poster.</h2>
-            <p className="muted">Each cafe gets a Tapovan Menu poster with its cafe name and code under the scan box. This one opens Lily&apos;s Cafe directly.</p>
+            <span className="eyebrow">QR poster</span>
+            <h2>Print QR for Lily&apos;s Cafe.</h2>
+            <p className="muted">The poster keeps Tapovan Menu as the brand, then shows Lily&apos;s Cafe, code <strong>lilys-cafe</strong>, and a direct link to /lilys-cafe.</p>
           </div>
           <a className="poster-link" href="/print/lilys-cafe-qr-poster.svg" target="_blank" rel="noreferrer">
             <img src="/print/lilys-cafe-qr-poster.svg" alt="Printable Tapovan Menu QR poster for Lily's Cafe" />
