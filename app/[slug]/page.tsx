@@ -10,13 +10,27 @@ export default async function LiveMenuPage({ params }: { params: { slug: string 
   const enriched = outlet.dishes.map((dish) => ({ dish, availability: getDishAvailability(dish, outlet.ingredients) }));
   const available = enriched.filter((entry) => entry.availability.available);
   const unavailable = enriched.filter((entry) => !entry.availability.available);
+  const isLilysCafe = outlet.slug === "lilys-cafe";
+  const availableByCategory = outlet.categories
+    .map((category) => ({
+      category,
+      items: available.filter(({ dish }) => dish.category === category)
+    }))
+    .filter((group) => group.items.length > 0);
 
   return (
     <main className="page customer-page">
       <div className="shell customer-shell">
-        <section className="customer-hero">
-          <span className="eyebrow">Tapovan Menu · live menu</span>
-          <h1>{outlet.name}</h1>
+        <section className="customer-hero cafe-hero">
+          <span className="eyebrow">Live menu</span>
+          {isLilysCafe ? (
+            <div className="customer-brand-block">
+              <img className="customer-logo" src="/brand/lilys-logo.png" alt="Lily's Cafe" />
+              <h1 className="sr-only">{outlet.name}</h1>
+            </div>
+          ) : (
+            <h1>{outlet.name}</h1>
+          )}
           <p>{outlet.area}</p>
           <div className="customer-meta">
             <span>Available: {available.length}</span>
@@ -33,16 +47,23 @@ export default async function LiveMenuPage({ params }: { params: { slug: string 
               <p>{available.length} items ready</p>
             </div>
           </div>
-          <div className="simple-menu-list">
-            {available.map(({ dish }) => (
-              <article className="simple-menu-item" key={dish.id}>
-                <div className="food-img">{dish.emoji}</div>
-                <div>
-                  <strong>{dish.name}</strong>
-                  <p>{dish.description}</p>
+          <div className="menu-category-list">
+            {availableByCategory.map(({ category, items }) => (
+              <section className="menu-category" key={category}>
+                <h3>{category}</h3>
+                <div className="simple-menu-list menu-like-list">
+                  {items.map(({ dish }) => (
+                    <article className="simple-menu-item" key={dish.id}>
+                      <div className="food-img">{dish.emoji}</div>
+                      <div>
+                        <strong>{dish.name}</strong>
+                        <p>{dish.description}</p>
+                      </div>
+                      <div className="simple-price">₹{dish.price}</div>
+                    </article>
+                  ))}
                 </div>
-                <div className="simple-price">₹{dish.price}</div>
-              </article>
+              </section>
             ))}
           </div>
         </section>

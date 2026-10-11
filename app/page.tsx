@@ -40,6 +40,7 @@ export default async function HomePage() {
             {cards.map(({ outlet, ready, unavailable }) => (
               <article className="outlet-card" key={outlet.id}>
                 <div>
+                  {outlet.slug === "lilys-cafe" ? <img className="outlet-logo" src="/brand/lilys-logo.png" alt="Lily's Cafe logo" /> : null}
                   <span className="scanner-pill">{outlet.area}</span>
                   <h3>{outlet.name}</h3>
                   <p className="muted">{outlet.address}</p>
