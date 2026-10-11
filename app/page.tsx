@@ -21,11 +21,11 @@ export default async function HomePage() {
         <section className="hero landing-hero">
           <div className="landing-copy">
             <span className="eyebrow">Tapovan Menu · live availability</span>
-            <h1 className="h1">Scan once. See what the cafe can serve right now.</h1>
-            <p className="lead">Printed menus stay on the table. Tapovan Menu adds a live QR layer so guests see available dishes, sold-out items, and the exact cafe they scanned.</p>
+            <h1 className="h1">Choose your cafe or scan its table QR.</h1>
+            <p className="lead">Every cafe gets its own Tapovan Menu QR. Guests scan the code at the table or choose a cafe below to open that cafe’s live menu.</p>
             <div className="landing-actions">
               <Link className="cta" href={`/${featured.slug}`}>Open {featured.name}</Link>
-              <a className="cta secondary" href="/print/lilys-cafe-qr-poster.svg" target="_blank" rel="noreferrer">Print demo QR</a>
+              <a className="cta secondary" href="/print/lilys-cafe-qr-poster.svg" target="_blank" rel="noreferrer">Download Lily's QR</a>
             </div>
           </div>
           <MenuScanner />
@@ -33,9 +33,9 @@ export default async function HomePage() {
 
         <section className="landing-section">
           <div className="section-heading">
-            <span className="eyebrow">First cafe live</span>
-            <h2>Choose a cafe or scan its table QR</h2>
-            <p className="muted">Lily&apos;s Cafe is the first demo outlet. As more Tapovan cafes join, this page becomes the directory.</p>
+            <span className="eyebrow">Cafe directory</span>
+            <h2>Live menus by cafe</h2>
+            <p className="muted">Lily&apos;s Cafe is live first. When 10 cafes join, they appear here as separate cards with their own QR, cafe code, live menu, and staff login.</p>
           </div>
           <div className="outlet-grid">
             {cards.map(({ outlet, ready, unavailable }) => (
@@ -51,7 +51,7 @@ export default async function HomePage() {
                 </div>
                 <div className="qr-preview">
                   <img src={`/qr/${outlet.slug}.svg`} alt={`${outlet.name} Tapovan Menu QR code`} />
-                  <div><strong>Scan for {outlet.name}</strong><small>Connected to /{outlet.slug}</small></div>
+                  <div><strong>Scan for {outlet.name}</strong><small>Code: {outlet.slug} · opens /{outlet.slug}</small></div>
                 </div>
                 <div className="outlet-actions">
                   <Link className="cta" href={`/${outlet.slug}`}>View live menu</Link>
@@ -65,8 +65,8 @@ export default async function HomePage() {
         <section className="print-section">
           <div>
             <span className="eyebrow">Cafe test print</span>
-            <h2>Print this QR and place it beside Lily&apos;s menu.</h2>
-            <p className="muted">Customers scan the Tapovan Menu code, land directly on Lily&apos;s Cafe, and see live availability from Supabase.</p>
+            <h2>Download the Lily&apos;s Cafe QR poster.</h2>
+            <p className="muted">Each cafe gets a Tapovan Menu poster with its cafe name and code under the scan box. This one opens Lily&apos;s Cafe directly.</p>
           </div>
           <a className="poster-link" href="/print/lilys-cafe-qr-poster.svg" target="_blank" rel="noreferrer">
             <img src="/print/lilys-cafe-qr-poster.svg" alt="Printable Tapovan Menu QR poster for Lily's Cafe" />
