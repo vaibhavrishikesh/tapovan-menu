@@ -46,7 +46,7 @@ Each cafe gets:
 
 ## Current implementation demo
 
-The repository now includes a working Next.js MVP shell. It uses local Lily's Cafe demo data first so the product can be shown before Supabase writes are connected.
+The repository now includes a working Next.js MVP shell. With Supabase environment variables configured, Lily's Cafe menu data loads from Supabase and staff ingredient changes persist to the database. If env keys are missing, the app falls back to local demo data so the UI can still be shown.
 
 Run locally:
 
@@ -62,7 +62,7 @@ Demo routes:
 - Ingredient update screen: `http://localhost:3000/admin/lilys-cafe/ingredients`
 - Demo PIN: `1234`
 
-The admin ingredient screen is interactive for demo: tap ingredients to cycle through Available, Low, Missing, and Not ready. Affected dishes update immediately on screen. Production persistence will use Supabase.
+The admin ingredient screen is interactive: tap ingredients to cycle through Available, Low, Missing, and Not ready. Affected dishes update immediately on screen, and with Supabase env configured the change is saved through the server API.
 
 ## Supabase setup
 
@@ -86,6 +86,17 @@ Run these in the Supabase SQL editor, in this order:
 2. `supabase/seed-demo.sql`
 
 The app keeps a local demo fallback when env keys are missing. After adding `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, and `SUPABASE_SERVICE_ROLE_KEY`, the public menu reads Lily's Cafe from Supabase and the staff ingredient screen persists status changes. Keep the service role key only in server/Vercel environment variables; never paste it into client code.
+
+## Vercel deployment
+
+Set these production environment variables on the Vercel project before deploying:
+
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `ADMIN_SESSION_SECRET`
+
+The current Vercel CLI token on this machine is invalid. Run `npx vercel login` or reconnect Vercel in the dashboard, then link/deploy this repository. After env variables are set, a production build should read the same Supabase Lily's Cafe data and persist admin ingredient changes.
 
 ## Documents
 
