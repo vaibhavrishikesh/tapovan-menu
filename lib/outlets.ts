@@ -101,3 +101,34 @@ export async function getOutletBySlug(slug: string): Promise<Outlet | null> {
   if (!data) return slug === demoOutlet.slug ? demoOutlet : null;
   return rowToOutlet(data);
 }
+
+
+export async function getActiveOutlets(): Promise<Outlet[]> {
+  if (!hasSupabaseConfig()) return [demoOutlet];
+  const supabase = getSupabaseServerClient();
+  if (!supabase) return [demoOutlet];
+
+  const { data, error } = await supabase
+    .from("outlets")
+    .select(`
+      id,
+      slug,
+      name,
+      area,
+      address,
+      admin_pin,
+      updated_at,
+      menu_categories(id,name,sort_order),
+      ingredients(id,name,status,reason,updated_at),
+      dishes(id,name,price,description,emoji,manual_status,sort_order,category_id,dish_ingredients(ingredient_id))
+    `)
+    .eq("is_active", true)
+    .order("name")
+    .returns<OutletRow[]>();
+
+  if (error) {
+    console.error("Supabase outlets lookup failed", error.message);
+    return [demoOutlet];
+  }
+  return data?.length ? data.map(rowToOutlet) : [demoOutlet];
+}
