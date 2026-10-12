@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MenuScanner } from "@/components/MenuScanner";
+import { ScannerModal } from "@/components/ScannerModal";
 import { getDishAvailability } from "@/lib/availability";
 import { getActiveOutlets } from "@/lib/outlets";
 
@@ -28,7 +28,7 @@ export default async function HomePage() {
             <span className="eyebrow">Tapovan Menu · live availability</span>
             <h1 className="h1">Scan a cafe QR or choose a cafe.</h1>
             <p className="lead">A food-app style live directory for Tapovan cafes. Guests open the cafe they are sitting in and see what is actually available right now.</p>
-            <div className="app-search-card">Search by cafe, area, or scan the table QR</div>
+            <div className="app-search-card"><span>Search by cafe, area, or scan the table QR</span><ScannerModal /></div>
             <div className="landing-actions">
               <Link className="cta" href={`/${featured.slug}`}>View {featured.name}</Link>
               <a className="cta secondary" href="/print/lilys-cafe-qr-poster.svg" target="_blank" rel="noreferrer">Print QR for Lily&apos;s Cafe</a>
@@ -45,11 +45,13 @@ export default async function HomePage() {
           <div className="outlet-grid">
             {cards.map(({ outlet, ready, unavailable }) => (
               <article className="outlet-card" key={outlet.id}>
-                <div>
-                  {outlet.slug === "lilys-cafe" ? <img className="outlet-logo" src="/brand/lilys-logo.png" alt="Lily's Cafe logo" /> : null}
-                  <span className="scanner-pill">{outlet.area}</span>
-                  <h3>{outlet.name}</h3>
-                  <p className="muted">{outlet.address}</p>
+                <div className={outlet.slug === "lilys-cafe" ? "outlet-card-head with-logo" : "outlet-card-head"}>
+                  <div className="outlet-card-copy">
+                    <span className="scanner-pill">{outlet.area}</span>
+                    <h3>{outlet.name}</h3>
+                    <p className="muted">{outlet.address}</p>
+                  </div>
+                  {outlet.slug === "lilys-cafe" ? <img className="outlet-logo side-logo" src="/brand/lilys-logo.png" alt="Lily's Cafe logo" /> : null}
                 </div>
                 <div className="outlet-stats">
                   <span><strong>{ready}</strong> ready</span>
@@ -74,15 +76,6 @@ export default async function HomePage() {
               </article>
             ))}
           </div>
-        </section>
-
-        <section className="scanner-section">
-          <div className="section-heading compact-heading">
-            <span className="eyebrow">Optional scanner</span>
-            <h2>Already at a cafe?</h2>
-            <p className="muted">Use this only when a customer wants to scan a Tapovan Menu QR from the browser. The cafe list above stays the main path.</p>
-          </div>
-          <MenuScanner />
         </section>
 
         <section className="print-section">

@@ -21,6 +21,19 @@ export default async function LiveMenuPage({ params }: { params: { slug: string 
   return (
     <main className="page customer-page">
       <div className="shell customer-shell">
+        <nav className="top-menu-bar" aria-label="Cafe menu navigation">
+          <div className="breadcrumb-line">
+            <Link href="/">Tapovan Menu</Link>
+            <span>/</span>
+            <span>{outlet.name}</span>
+          </div>
+          <div className="top-menu-actions">
+            <Link className="top-action active" href={`/${outlet.slug}`}>Menu</Link>
+            <Link className="top-action" href={`/admin/${outlet.slug}`}>Staff</Link>
+            <Link className="top-action" href={`/admin/${outlet.slug}/ingredients`}>Stock</Link>
+          </div>
+        </nav>
+
         <section className="customer-hero cafe-hero">
           <span className="eyebrow">Live menu</span>
           {isLilysCafe ? (
@@ -92,11 +105,6 @@ export default async function LiveMenuPage({ params }: { params: { slug: string 
           </section>
         ) : null}
 
-        <footer className="footer-nav">
-          <Link className="active" href={`/${outlet.slug}`}>Live menu</Link>
-          <Link href={`/admin/${outlet.slug}`}>Staff login</Link>
-          <Link href={`/admin/${outlet.slug}/ingredients`}>Ingredients</Link>
-        </footer>
       </div>
     </main>
   );
