@@ -524,3 +524,94 @@ button, input { font: inherit; }
 .directory-hero .landing-actions {
   display: none;
 }
+
+/* Customer menu simplification */
+.customer-topline {
+  display: grid;
+  gap: 12px;
+  padding: 6px 4px 4px;
+}
+.customer-title-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+}
+.customer-title-row h1 {
+  margin: 2px 0 0;
+  color: var(--ink);
+  font-size: clamp(30px, 9vw, 52px);
+  line-height: .95;
+  letter-spacing: -.055em;
+}
+.customer-area {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 850;
+}
+.customer-logo-mini {
+  display: block;
+  width: min(118px, 30vw);
+  height: auto;
+  mix-blend-mode: multiply;
+}
+.menu-only-section {
+  padding-top: 14px;
+}
+.menu-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 16px;
+}
+.menu-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px;
+  border: 1px solid rgba(16,46,38,.08);
+  border-radius: 999px;
+  background: rgba(255,255,255,.72);
+  color: #526a62;
+  font-size: 12px;
+  font-weight: 900;
+}
+.menu-legend .status-dot {
+  margin: 0;
+  width: 9px;
+  height: 9px;
+  box-shadow: none;
+}
+.status-dot.low {
+  background: var(--amber);
+  box-shadow: 0 0 0 5px rgba(243,201,93,.22);
+}
+.customer-page .menu-category h2 {
+  margin: 0;
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -.025em;
+}
+.customer-page .simple-menu-item {
+  grid-template-columns: 14px minmax(0, 1fr) auto;
+  gap: 10px;
+}
+.customer-page .simple-menu-item .item-dot {
+  margin-top: 6px;
+  box-shadow: none;
+}
+.customer-page .simple-menu-item.unavailable strong,
+.customer-page .simple-menu-item.unavailable p,
+.customer-page .simple-menu-item.unavailable .simple-price {
+  color: #7b8985;
+}
+@media (max-width: 420px) {
+  .customer-page .simple-menu-item {
+    grid-template-columns: 12px minmax(0, 1fr) auto;
+    gap: 9px;
+  }
+}

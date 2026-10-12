@@ -7,70 +7,56 @@ export default async function LiveMenuPage({ params }: { params: { slug: string 
   const outlet = await getOutletBySlug(params.slug);
   if (!outlet) notFound();
 
-  const enriched = outlet.dishes.map((dish) => ({ dish, availability: getDishAvailability(dish, outlet.ingredients) }));
-  const available = enriched.filter((entry) => entry.availability.available);
-  const unavailable = enriched.filter((entry) => !entry.availability.available);
+  const enriched = outlet.dishes.map((dish) => {
+    const availability = getDishAvailability(dish, outlet.ingredients);
+    const hasLowStock = dish.ingredientIds.some((id) => outlet.ingredients.find((ingredient) => ingredient.id === id)?.status === "low");
+    const status = availability.available ? (hasLowStock ? "low" : "available") : "off";
+
+    return { dish, availability, status };
+  });
   const isLilysCafe = outlet.slug === "lilys-cafe";
-  const availableByCategory = outlet.categories
+  const menuByCategory = outlet.categories
     .map((category) => ({
       category,
-      items: available.filter(({ dish }) => dish.category === category)
+      items: enriched.filter(({ dish }) => dish.category === category)
     }))
     .filter((group) => group.items.length > 0);
 
   return (
     <main className="page customer-page">
       <div className="shell customer-shell">
-        <nav className="top-menu-bar" aria-label="Cafe menu navigation">
+        <header className="customer-topline">
           <div className="breadcrumb-line">
             <Link href="/">Tapovan Menu</Link>
             <span>/</span>
             <span>{outlet.name}</span>
           </div>
-          <div className="top-menu-actions">
-            <Link className="top-action active" href={`/${outlet.slug}`}>Menu</Link>
-            <Link className="top-action" href={`/admin/${outlet.slug}`}>Staff</Link>
-            <Link className="top-action" href={`/admin/${outlet.slug}/ingredients`}>Stock</Link>
-          </div>
-        </nav>
-
-        <section className="customer-hero cafe-hero">
-          <span className="eyebrow">Live menu</span>
-          {isLilysCafe ? (
-            <div className="customer-brand-block">
-              <img className="customer-logo" src="/brand/lilys-logo.png" alt="Lily's Cafe" />
-              <h1 className="sr-only">{outlet.name}</h1>
-            </div>
-          ) : (
-            <h1>{outlet.name}</h1>
-          )}
-          <p>{outlet.area}</p>
-          <div className="customer-meta">
-            <span>Available: {available.length}</span>
-            <span>Unavailable: {unavailable.length}</span>
-            <span>Updated {outlet.updatedAt}</span>
-          </div>
-        </section>
-
-        <section className="customer-menu-section">
-          <div className="simple-section-title">
-            <span className="status-dot available" />
+          <div className="customer-title-row">
             <div>
-              <h2>Available now</h2>
-              <p>{available.length} items ready</p>
+              <p className="customer-area">{outlet.area}</p>
+              <h1>{outlet.name}</h1>
             </div>
+            {isLilysCafe ? <img className="customer-logo-mini" src="/brand/lilys-logo.png" alt="Lily's Cafe logo" /> : null}
+          </div>
+        </header>
+
+        <section className="customer-menu-section menu-only-section">
+          <div className="menu-legend" aria-label="Menu status guide">
+            <span><i className="status-dot available" /> Available</span>
+            <span><i className="status-dot low" /> Few left</span>
+            <span><i className="status-dot off" /> Not available</span>
           </div>
           <div className="menu-category-list">
-            {availableByCategory.map(({ category, items }) => (
+            {menuByCategory.map(({ category, items }) => (
               <section className="menu-category" key={category}>
-                <h3>{category}</h3>
+                <h2>{category}</h2>
                 <div className="simple-menu-list menu-like-list">
-                  {items.map(({ dish }) => (
-                    <article className="simple-menu-item" key={dish.id}>
-                      <div className="food-img">{dish.emoji}</div>
+                  {items.map(({ dish, availability, status }) => (
+                    <article className={availability.available ? "simple-menu-item" : "simple-menu-item unavailable"} key={dish.id}>
+                      <span className={`status-dot item-dot ${status}`} aria-label={status === "available" ? "Available" : status === "low" ? "Few left" : "Not available"} />
                       <div>
                         <strong>{dish.name}</strong>
-                        <p>{dish.description}</p>
+                        <p>{availability.available ? dish.description : availability.reason}</p>
                       </div>
                       <div className="simple-price">₹{dish.price}</div>
                     </article>
@@ -80,31 +66,6 @@ export default async function LiveMenuPage({ params }: { params: { slug: string 
             ))}
           </div>
         </section>
-
-        {unavailable.length > 0 ? (
-          <section className="customer-menu-section unavailable-section">
-            <div className="simple-section-title">
-              <span className="status-dot off" />
-              <div>
-                <h2>Unavailable today</h2>
-                <p>{unavailable.length} items hidden from ordering</p>
-              </div>
-            </div>
-            <div className="simple-menu-list">
-              {unavailable.map(({ dish, availability }) => (
-                <article className="simple-menu-item unavailable" key={dish.id}>
-                  <div className="food-img">{dish.emoji}</div>
-                  <div>
-                    <strong>{dish.name}</strong>
-                    <p>{availability.reason}</p>
-                  </div>
-                  <div className="simple-price">₹{dish.price}</div>
-                </article>
-              ))}
-            </div>
-          </section>
-        ) : null}
-
       </div>
     </main>
   );
