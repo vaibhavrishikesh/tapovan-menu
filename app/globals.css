@@ -512,3 +512,15 @@ button, input { font: inherit; }
     width: 310px;
   }
 }
+
+.app-search-card .cta.secondary {
+  background: linear-gradient(135deg, var(--green), #0f6b48);
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(22,132,87,.22);
+}
+.app-search-card .cta.secondary:hover {
+  background: linear-gradient(135deg, #1a9463, var(--green));
+}
+.directory-hero .landing-actions {
+  display: none;
+}

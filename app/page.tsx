@@ -10,7 +10,6 @@ export default async function HomePage() {
     if (b.slug === "lilys-cafe") return 1;
     return a.name.localeCompare(b.name);
   });
-  const featured = sortedOutlets[0];
   const cards = sortedOutlets.map((outlet) => {
     const enriched = outlet.dishes.map((dish) => getDishAvailability(dish, outlet.ingredients));
     return {
@@ -29,10 +28,6 @@ export default async function HomePage() {
             <h1 className="h1">Scan a cafe QR or choose a cafe.</h1>
             <p className="lead">A food-app style live directory for Tapovan cafes. Guests open the cafe they are sitting in and see what is actually available right now.</p>
             <div className="app-search-card"><span>Search by cafe, area, or scan the table QR</span><ScannerModal /></div>
-            <div className="landing-actions">
-              <Link className="cta" href={`/${featured.slug}`}>View {featured.name}</Link>
-              <a className="cta secondary" href="/print/lilys-cafe-qr-poster.svg" target="_blank" rel="noreferrer">Print QR for Lily&apos;s Cafe</a>
-            </div>
           </div>
         </section>
 
