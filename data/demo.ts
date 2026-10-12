@@ -5,6 +5,22 @@ export type Ingredient = { id: string; name: string; status: IngredientStatus; r
 export type Dish = { id: string; name: string; category: string; price: number; description: string; emoji: string; ingredientIds: string[]; manualStatus: DishStatus; };
 export type Outlet = { id: string; slug: string; name: string; area: string; address: string; adminPin: string; updatedAt: string; categories: string[]; ingredients: Ingredient[]; dishes: Dish[]; };
 
+function cafePreviewOutlet(id: string, name: string, area: string, address: string, dishes: Dish[]): Outlet {
+  return {
+    id,
+    slug: id,
+    name,
+    area,
+    address,
+    adminPin: "1234",
+    updatedAt: "demo",
+    categories: Array.from(new Set(dishes.map((dish) => dish.category))),
+    ingredients: [],
+    dishes
+  };
+}
+
+
 export const demoOutlet: Outlet = {
   id: "lilys-cafe",
   slug: "lilys-cafe",
@@ -57,3 +73,28 @@ export const demoOutlet: Outlet = {
     { id: "falafel-platter", name: "Falafel Platter", category: "Mediterranean", price: 330, description: "Crispy falafel served with hummus, pita and fresh accompaniments.", emoji: "🧆", ingredientIds: ["hummus", "pita"], manualStatus: "available" }
   ]
 };
+
+
+export const demoOutlets: Outlet[] = [
+  demoOutlet,
+  cafePreviewOutlet("ganga-bliss-cafe", "Ganga Bliss Cafe", "Laxman Jhula", "River-view cafe near the bridge", [
+    { id: "ganga-lemon-mint", name: "Lemon Mint Cooler", category: "Coolers", price: 90, description: "Fresh lemon, mint and chilled soda.", emoji: "🍋", ingredientIds: [], manualStatus: "available" },
+    { id: "ganga-veggie-sandwich", name: "Veggie Sandwich", category: "Quick Bites", price: 160, description: "Grilled bread with vegetables and cheese.", emoji: "🥪", ingredientIds: [], manualStatus: "available" },
+    { id: "ganga-banana-pancake", name: "Banana Pancake", category: "Breakfast", price: 180, description: "Soft pancake with banana and honey.", emoji: "🥞", ingredientIds: [], manualStatus: "available" }
+  ]),
+  cafePreviewOutlet("tapovan-roastery", "Tapovan Roastery", "Tapovan Market", "Small-batch coffee bar on the main lane", [
+    { id: "roastery-americano", name: "Americano", category: "Coffee", price: 120, description: "Clean black coffee, hot or iced.", emoji: "☕", ingredientIds: [], manualStatus: "available" },
+    { id: "roastery-cappuccino", name: "Cappuccino", category: "Coffee", price: 160, description: "Espresso with steamed milk foam.", emoji: "☕", ingredientIds: [], manualStatus: "available" },
+    { id: "roastery-croissant", name: "Butter Croissant", category: "Bakery", price: 140, description: "Flaky morning croissant.", emoji: "🥐", ingredientIds: [], manualStatus: "available" }
+  ]),
+  cafePreviewOutlet("sadhu-bowl-house", "Sadhu Bowl House", "Upper Tapovan", "Healthy bowls and juices near yoga stays", [
+    { id: "sadhu-sattvic-bowl", name: "Sattvic Bowl", category: "Bowls", price: 240, description: "Rice, dal, seasonal vegetables and chutney.", emoji: "🥣", ingredientIds: [], manualStatus: "available" },
+    { id: "sadhu-green-juice", name: "Green Juice", category: "Juices", price: 140, description: "Cucumber, mint, lemon and greens.", emoji: "🥤", ingredientIds: [], manualStatus: "available" },
+    { id: "sadhu-fruit-bowl", name: "Fruit Bowl", category: "Bowls", price: 180, description: "Fresh cut seasonal fruits.", emoji: "🍓", ingredientIds: [], manualStatus: "available" }
+  ]),
+  cafePreviewOutlet("namaste-breakfast-club", "Namaste Breakfast Club", "Tapovan Road", "All-day breakfast and chai spot", [
+    { id: "namaste-masala-omelette", name: "Masala Omelette", category: "Breakfast", price: 140, description: "Egg omelette with onion, tomato and herbs.", emoji: "🍳", ingredientIds: [], manualStatus: "available" },
+    { id: "namaste-aloo-toast", name: "Aloo Toast", category: "Toast", price: 120, description: "Spiced potato toast with chutney.", emoji: "🍞", ingredientIds: [], manualStatus: "available" },
+    { id: "namaste-cutting-chai", name: "Cutting Chai", category: "Tea", price: 50, description: "Strong roadside-style chai.", emoji: "☕", ingredientIds: [], manualStatus: "available" }
+  ])
+];

@@ -5,8 +5,13 @@ import { getActiveOutlets } from "@/lib/outlets";
 
 export default async function HomePage() {
   const outlets = await getActiveOutlets();
-  const featured = outlets[0];
-  const cards = outlets.map((outlet) => {
+  const sortedOutlets = [...outlets].sort((a, b) => {
+    if (a.slug === "lilys-cafe") return -1;
+    if (b.slug === "lilys-cafe") return 1;
+    return a.name.localeCompare(b.name);
+  });
+  const featured = sortedOutlets[0];
+  const cards = sortedOutlets.map((outlet) => {
     const enriched = outlet.dishes.map((dish) => getDishAvailability(dish, outlet.ingredients));
     return {
       outlet,
@@ -20,9 +25,10 @@ export default async function HomePage() {
       <div className="shell landing-shell">
         <section className="hero landing-hero directory-hero">
           <div className="landing-copy">
-            <span className="eyebrow">Tapovan Menu directory</span>
+            <span className="eyebrow">Tapovan Menu · live availability</span>
             <h1 className="h1">Scan a cafe QR or choose a cafe.</h1>
-            <p className="lead">Each cafe has its own live menu. Scan the Tapovan Menu QR at the table, or pick the cafe from this list.</p>
+            <p className="lead">A food-app style live directory for Tapovan cafes. Guests open the cafe they are sitting in and see what is actually available right now.</p>
+            <div className="app-search-card">Search by cafe, area, or scan the table QR</div>
             <div className="landing-actions">
               <Link className="cta" href={`/${featured.slug}`}>View {featured.name}</Link>
               <a className="cta secondary" href="/print/lilys-cafe-qr-poster.svg" target="_blank" rel="noreferrer">Print QR for Lily&apos;s Cafe</a>
@@ -32,9 +38,9 @@ export default async function HomePage() {
 
         <section className="landing-section">
           <div className="section-heading">
-            <span className="eyebrow">Cafe list</span>
-            <h2>Choose a live menu</h2>
-            <p className="muted">As more cafes join Tapovan Menu, they appear here as cards with their area, availability count, and direct menu link.</p>
+            <span className="eyebrow">Live cafes</span>
+            <h2>Open a Tapovan menu</h2>
+            <p className="muted">Lily&apos;s is live first. The other cafes are demo directory cards so the product already shows how it grows to 10+ cafes.</p>
           </div>
           <div className="outlet-grid">
             {cards.map(({ outlet, ready, unavailable }) => (
@@ -49,10 +55,17 @@ export default async function HomePage() {
                   <span><strong>{ready}</strong> ready</span>
                   <span><strong>{unavailable}</strong> unavailable</span>
                 </div>
-                <div className="qr-preview">
-                  <img src={`/qr/${outlet.slug}.svg`} alt={`${outlet.name} Tapovan Menu QR code`} />
-                  <div><strong>Scan for {outlet.name}</strong><small>Code: {outlet.slug} · opens /{outlet.slug}</small></div>
-                </div>
+                {outlet.slug === "lilys-cafe" ? (
+                  <div className="qr-preview">
+                    <img src={`/qr/${outlet.slug}.svg`} alt={`${outlet.name} Tapovan Menu QR code`} />
+                    <div><strong>Scan for {outlet.name}</strong><small>Code: {outlet.slug} · opens /{outlet.slug}</small></div>
+                  </div>
+                ) : (
+                  <div className="qr-preview qr-preview-pending">
+                    <span>QR</span>
+                    <div><strong>Demo cafe card</strong><small>QR poster can be generated after onboarding this cafe.</small></div>
+                  </div>
+                )}
                 <div className="outlet-actions">
                   <Link className="cta" href={`/${outlet.slug}`}>View live menu</Link>
                   {outlet.slug === "lilys-cafe" ? <a className="cta light" href="/print/lilys-cafe-qr-poster.svg" target="_blank" rel="noreferrer">Download QR</a> : null}

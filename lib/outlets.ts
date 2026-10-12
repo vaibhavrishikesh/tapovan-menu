@@ -1,4 +1,4 @@
-import { demoOutlet, type Dish, type Ingredient, type Outlet } from "@/data/demo";
+import { demoOutlet, demoOutlets, type Dish, type Ingredient, type Outlet } from "@/data/demo";
 import { getSupabaseServerClient, hasSupabaseConfig } from "@/lib/supabase";
 
 type OutletRow = {
@@ -72,9 +72,9 @@ function rowToOutlet(row: OutletRow): Outlet {
 }
 
 export async function getOutletBySlug(slug: string): Promise<Outlet | null> {
-  if (!hasSupabaseConfig()) return slug === demoOutlet.slug ? demoOutlet : null;
+  if (!hasSupabaseConfig()) return demoOutlets.find((outlet) => outlet.slug === slug) ?? null;
   const supabase = getSupabaseServerClient();
-  if (!supabase) return slug === demoOutlet.slug ? demoOutlet : null;
+  if (!supabase) return demoOutlets.find((outlet) => outlet.slug === slug) ?? null;
 
   const { data, error } = await supabase
     .from("outlets")
@@ -96,17 +96,17 @@ export async function getOutletBySlug(slug: string): Promise<Outlet | null> {
 
   if (error) {
     console.error("Supabase outlet lookup failed", error.message);
-    return slug === demoOutlet.slug ? demoOutlet : null;
+    return demoOutlets.find((outlet) => outlet.slug === slug) ?? null;
   }
-  if (!data) return slug === demoOutlet.slug ? demoOutlet : null;
+  if (!data) return demoOutlets.find((outlet) => outlet.slug === slug) ?? null;
   return rowToOutlet(data);
 }
 
 
 export async function getActiveOutlets(): Promise<Outlet[]> {
-  if (!hasSupabaseConfig()) return [demoOutlet];
+  if (!hasSupabaseConfig()) return demoOutlets;
   const supabase = getSupabaseServerClient();
-  if (!supabase) return [demoOutlet];
+  if (!supabase) return demoOutlets;
 
   const { data, error } = await supabase
     .from("outlets")
@@ -128,7 +128,7 @@ export async function getActiveOutlets(): Promise<Outlet[]> {
 
   if (error) {
     console.error("Supabase outlets lookup failed", error.message);
-    return [demoOutlet];
+    return demoOutlets;
   }
-  return data?.length ? data.map(rowToOutlet) : [demoOutlet];
+  return data?.length ? data.map(rowToOutlet) : demoOutlets;
 }
