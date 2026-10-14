@@ -1,7 +1,44 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getDishAvailability } from "@/lib/availability";
 import { getOutletBySlug } from "@/lib/outlets";
+
+const canonicalBySlug: Record<string, string> = {
+  "lilys-cafe": "https://www.lilyscafe.in/lilys-cafe"
+};
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const outlet = await getOutletBySlug(params.slug);
+
+  if (!outlet) {
+    return {
+      title: "Menu not found",
+      description: "This Tapovan Menu cafe could not be found."
+    };
+  }
+
+  const canonicalUrl = canonicalBySlug[outlet.slug] ?? `https://tapovan-menu.vercel.app/${outlet.slug}`;
+  const description = `Open ${outlet.name}'s live menu in ${outlet.area}. See what is available right now before ordering.`;
+
+  return {
+    title: `${outlet.name} Live Menu`,
+    description,
+    alternates: { canonical: canonicalUrl },
+    openGraph: {
+      title: `${outlet.name} Live Menu`,
+      description,
+      url: canonicalUrl,
+      siteName: "Tapovan Menu",
+      type: "website"
+    },
+    twitter: {
+      card: "summary",
+      title: `${outlet.name} Live Menu`,
+      description
+    }
+  };
+}
 
 export default async function LiveMenuPage({ params }: { params: { slug: string } }) {
   const outlet = await getOutletBySlug(params.slug);
