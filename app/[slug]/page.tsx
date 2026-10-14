@@ -4,10 +4,6 @@ import { notFound } from "next/navigation";
 import { getDishAvailability } from "@/lib/availability";
 import { getOutletBySlug } from "@/lib/outlets";
 
-const canonicalBySlug: Record<string, string> = {
-  "lilys-cafe": "https://www.lilyscafe.in/lilys-cafe"
-};
-
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const outlet = await getOutletBySlug(params.slug);
 
@@ -18,7 +14,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     };
   }
 
-  const canonicalUrl = canonicalBySlug[outlet.slug] ?? `https://tapovan-menu.vercel.app/${outlet.slug}`;
+  const canonicalUrl = `https://tapovan-menu.vercel.app/${outlet.slug}`;
   const description = `Open ${outlet.name}'s live menu in ${outlet.area}. See what is available right now before ordering.`;
 
   return {
